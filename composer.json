@@ -1,0 +1,44 @@
+{
+    "name": "rafapaulino/wordpresspackage",
+    "description": ":description",
+    "license": "license",
+    "authors": [
+        {
+            "name": "Rafael Paulino",
+            "email": "rafaclasses@gmail.com",
+            "homepage": "http://rafapaulino.com"
+        }
+    ],
+    "homepage": "https://github.com/rafapaulino/WordpressPackage",
+    "keywords": ["Laravel", "WordpressPackage"],
+    "require": {
+        "illuminate/support": "~5",
+        "rafael.paulino/wpapi": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "rafapaulino\\WordpressPackage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "rafapaulino\\WordpressPackage\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "rafapaulino\\WordpressPackage\\WordpressPackageServiceProvider"
+            ],
+            "aliases": {
+                "WordpressPackage": "rafapaulino\\WordpressPackage\\Facades\\WordpressPackage"
+            }
+        }
+    }
+}
