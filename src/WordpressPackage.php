@@ -1,8 +1,8 @@
 <?php
-
 namespace rafapaulino\WordpressPackage;
 use Config;
 use WordPress\WordPressFacade;
+use Session;
 
 class WordpressPackage
 {
@@ -29,23 +29,24 @@ class WordpressPackage
 
     public function getToken()
     {
-        $token = $this->_wp->getToken();
-        if ( isset($token["token"]["access_token"]) )
-            return $token["token"]["access_token"];
-        else 
-            return '';
+        return session('wordpress_token');
     }
 
-    public function setToken($token)
+    public function setToken()
     {
-        $this->_wp->setToken($token);
+        if ( isset($token["token"]["access_token"]) ) {
+            Session::put('wordpress_token', $token["token"]["access_token"]);
+            $this->_wp->setToken(session('wordpress_token'));
+        }
     }
 
     public function getSites()
     {
         if ( trim($this->getToken()) !== "") {
             
+            $this->_wp->setToken(session('wordpress_token'));
             $user = $this->_wp->getUserInfo();
+
             if ( isset($user["sites"]["sites"]) ) {
                 
                 $info = array();
@@ -62,6 +63,7 @@ class WordpressPackage
                         );
                     }
                 }
+                return $info;
             }
         
         } else {
@@ -69,8 +71,9 @@ class WordpressPackage
         }
     }
 
-    public function addPost($site_id, $title, $content, $excerpt, $image)
+    public function addPost($token, $site_id, $title, $content, $excerpt, $image)
     {
+        $this->_wp->setToken($token);
         $post = $this->_wp->postAdd(
             $site_id,
             $title,
