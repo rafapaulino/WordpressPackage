@@ -1,7 +1,7 @@
 {
     "name": "rafapaulino/wordpresspackage",
-    "description": ":description",
-    "license": "license",
+    "description": "Package para trablahar com o WordPress",
+    "license": "MIT",
     "authors": [
         {
             "name": "Rafael Paulino",
