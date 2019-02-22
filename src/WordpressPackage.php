@@ -1,4 +1,5 @@
 <?php
+
 namespace rafapaulino\WordpressPackage;
 use Config;
 use WordPress\WordPressFacade;
@@ -34,6 +35,8 @@ class WordpressPackage
 
     public function setToken()
     {
+        $token = $this->_wp->getToken();
+        
         if ( isset($token["token"]["access_token"]) ) {
             Session::put('wordpress_token', $token["token"]["access_token"]);
             $this->_wp->setToken(session('wordpress_token'));
