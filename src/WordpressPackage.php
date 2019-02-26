@@ -60,7 +60,7 @@ class WordpressPackage
         
                     if ( strpos($url, 'wordpress.com') ) {
                         $info[] = array(
-                            'id' => $id,
+                            'wordpress_id' => $id,
                             'titulo' => $titulo,
                             'url' => $url
                         );
@@ -85,8 +85,8 @@ class WordpressPackage
             $image
         );
 
-        if ( count($post) > 0 && isset($post['post']['url']) )
-            return $post['post']['url'];
+        if ( count($post) > 0 && isset($post['post']['URL']) )
+            return $post['post']['URL'];
         else
             return '';
     }
